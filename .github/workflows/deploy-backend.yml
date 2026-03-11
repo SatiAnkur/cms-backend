@@ -57,21 +57,3 @@ jobs:
             sudo systemctl restart cms-backend
             sudo systemctl is-active cms-backend
             echo "=== Backend deployment complete ==="
-
-      - name: Notify Slack on Success
-        if: success() && secrets.SLACK_WEBHOOK_URL != ''
-        uses: slackapi/slack-github-action@v1.26.0
-        with:
-          payload: |
-            {"text": "✅ *Backend deployed!*\nRepo: ${{ github.repository }}\nBy: ${{ github.actor }}"}
-        env:
-          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
-
-      - name: Notify Slack on Failure
-        if: failure() && secrets.SLACK_WEBHOOK_URL != ''
-        uses: slackapi/slack-github-action@v1.26.0
-        with:
-          payload: |
-            {"text": "❌ *Backend FAILED!*\nCheck: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"}
-        env:
-          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
