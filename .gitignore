@@ -1,0 +1,19 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+
+# Virtual Environment
+venv/
+
+# Environment variables
+.env
+
+# Database
+db.sqlite3
+
+# Static build
+staticfiles/
+
+# OS files
+.DS_Store
